@@ -1,6 +1,5 @@
-# SurveyBuilder
 
-Functionality
+# SurveyBuilder Functionality
 =============
 
 * Register as a user
@@ -15,7 +14,7 @@ Functionality
 * Ability to "preview" or really, take the actual survey
 
 
-TODOs / What I would have done differently
+Notes / Deficiencies
 ==========================================
 
 I'm a bit pressed for time with both work and school, but here's my self-critique:
