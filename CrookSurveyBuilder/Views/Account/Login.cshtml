@@ -1,31 +1,31 @@
 ﻿
 
+<div class="col-xs-4 col-lg-offset-4">
+    <div class="panel panel-default ">
+        <div class="panel-heading">Login</div>
+        <div class="panel-body">
+            <form novalidate action="/api/Account/Login" method="POST">
+                <div class="form-group">
+                    <label for="userName">
+                        Email Address:
+                        <input id="userName" data-ng-model="loginData.userName" class="form-control" />
+                    </label>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Login</div>
-    <div class="panel-body">
-        <form novalidate action="/api/Account/Login" method="POST">
-            <div class="form-group">
-                <label for="userName">
-                    Email Address:
-                    <input id="userName" data-ng-model="loginData.userName" class="form-control" />
-                </label>
-                
-            </div>
-            <div class="form-group">
-                <label for="password">
-                    Password:
-                    <input id="password" type="password" data-ng-model="loginData.password" class="form-control" />
-                </label>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        Password:
+                        <input id="password" type="password" data-ng-model="loginData.password" class="form-control" />
+                    </label>
 
-            </div>
-            <div>
-                <button type="button" ng-click="login()">Login</button>
-            </div>
-            <div class="alert alert-danger" ng-hide="message == ''">
-                {{message}}
-            </div>
-        </form>
+                </div>
+                <div>
+                    <button type="button" ng-click="login()" class="btn btn-success">Login</button>
+                </div>
+                <div class="alert alert-danger" ng-hide="message == ''">
+                    {{message}}
+                </div>
+            </form>
+        </div>
     </div>
-    
 </div>
