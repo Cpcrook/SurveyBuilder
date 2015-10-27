@@ -1,35 +1,35 @@
 ﻿
+<div class="col-xs-4 col-lg-offset-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">Register</div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label for="Email">
+                        Email Address:
+                        <input class="form-control" name="Email" ng-model="registrationData.email" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="Password">
+                        Password:
+                        <input class="form-control" type="password" name="Password" ng-model="registrationData.password" />
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="ConfirmPassword">
+                        Confirm Password:
+                        <input class="form-control" type="password" name="ConfirmPassword" ng-model="registrationData.confirmPassword" />
+                    </label>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Login</div>
-    <div class="panel-body">
-        <form>
-            <div class="form-group">
-                <label for="Email">
-                    Email Address:
-                    <input class="form-control" name="Email" ng-model="registrationData.email" />    
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="Password">
-                    Password:
-                    <input class="form-control" type="password" name="Password" ng-model="registrationData.password" />    
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="ConfirmPassword">
-                    Confirm Password:
-                    <input class="form-control" type="password" name="ConfirmPassword" ng-model="registrationData.confirmPassword" />    
-                </label>
-                
-            </div>
-            <div>
-                <button type="button" ng-click="register()">Register</button>
-            </div>
-            <div class="alert alert-danger" ng-hide="message == ''">
-                {{message}}
-            </div>
-        </form>
+                </div>
+                <div>
+                    <button type="button" ng-click="register()" class="btn btn-primary">Register</button>
+                </div>
+                <div class="alert alert-danger" ng-hide="message == ''">
+                    {{message}}
+                </div>
+            </form>
+        </div>
     </div>
-
 </div>
