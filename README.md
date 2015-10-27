@@ -18,7 +18,7 @@ Functionality
 TODOs / What I would have done differently
 ==========================================
 
-I'm a bit pressed for time with both work and school, but here are my thoughts:
+I'm a bit pressed for time with both work and school, but here's my self-critique:
 
 * Write tests: server-side, client-side, and end-to-end (Protractor)
 * Utilize FluentValidation for server-side validation
@@ -29,8 +29,10 @@ I'm a bit pressed for time with both work and school, but here are my thoughts:
 * Utilize data binding models for API controllers (mapping to and from entities using AutoMapper)
 * Re-think some of the DB structure -- not terribly comfortable with how EF treats composition/aggregation/etc so I'd need to look into that more.
 * Rename the home controller / break up the methods inside it
-* Consider using static HTML for Angular views (less overhear than MVC razor views)
+* Consider using static HTML for Angular views (less overhead than MVC razor views)
 * Add UI to show / summarize survey results
+* Used Git and GitFlow pattern through the (relatively short) process instead of toward ends
 
-Let me know if you have any questions.
+
+Thanks for the opportunity and let me know if you have any questions.
 - Chris

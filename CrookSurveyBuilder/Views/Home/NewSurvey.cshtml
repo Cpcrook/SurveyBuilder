@@ -1,0 +1,98 @@
+﻿<form name="SurveyForm" class="" novalidate>
+    <div class="container col-xs-9">
+        <fieldset>
+            <legend ng-hide="Survey.SurveyId">New Survey</legend>
+            <legend ng-show="Survey.SurveyId">Edit Survey</legend>
+            <!--has error class would do better being applied as a directive-->
+            <div class="form-group row" ng-class="{ 'has-error': (SurveyForm['Name'].$invalid && SurveyForm['Name'].$touched) }">
+                <label for="Name" class="col-xs-3 text-right">Name:</label>
+                <input id="Name" type="text" name="Name" class="form-control col-xs-6" placeholder="Name" ng-model="Survey.Name" ng-required="true" />
+            </div>
+            <div class="form-group row" ng-class="{ 'has-error': (SurveyForm['Description'].$invalid && SurveyForm['Description'].$touched) }">
+                <label for="Description" class="col-xs-3 text-right">Description:</label>
+                <textarea id="Description" name="Description" class="form-control col-xs-6" placeholder="Description..." ng-required="true" ng-model="Survey.Description"></textarea>
+            </div>
+            <div class="form-group row" ng-class="{ 'has-error': (SurveyForm['CompletionMessage'].$invalid && SurveyForm['CompletionMessage'].$touched) }">
+                <label for="CompletionMessage" class="col-xs-3 text-right">Completion Message:</label>
+                <textarea id="CompletionMessage" name="CompletionMessage" class="form-control col-xs-6" ng-required="true" ng-model="Survey.CompletionMessage" placeholder="Message to show the user upon completion of the survey."></textarea>
+            </div>
+
+        </fieldset>
+        <fieldset>
+            <legend>Questions</legend>
+            <div class="row">
+                <div class="btn btn-default" ng-click="addTextQuestion($event)">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    Add a Text-based Question
+                </div>
+                <div class="btn btn-default" ng-click="addMultipleChoiceQuestion($event)">
+                    <span class="glyphicon glyphicon-check"></span>
+                    Add a Multiple-Choice Question
+                </div>
+            </div>
+            <div class="container table-responsive">
+                <table class="table table-striped" ng-model="list">
+                    <thead>
+                        <tr>
+                            <th>Remove</th>
+                            <th>#</th>
+                            <th>Question</th>
+                            <th>Required</th>
+                            <th>Answers Mutually Exclusive</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody ui-sortable="sortableOptions" ng-model='Survey.Questions'>
+                        <tr ng-repeat="question in Survey.Questions" style="cursor: move">
+                            <td class="col-xs-1">
+                                <div ng-click="removeQuestion(question)">
+                                    <span class="glyphicon glyphicon-remove-sign btn"></span>
+                                </div>
+                            </td>
+                            <td>{{question.Order}}</td>
+                            <td class="col-xs-5">
+                                <div>
+                                    <input ng-model="question.QuestionText" ng-required="true" ng-placeholder="{{ $parent.isMultipleChoice(question) ? 'What is your favorite color?' : 'What can make this survey better?' }}" type="text" class="form-control col-xs-4" />
+
+                                </div>
+
+                            </td>
+                            <td>
+                                <input type="checkbox" name="Required" ng-model="question.Required" ng-true-value="true" ng-false-value="false" />
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-if="isMultipleChoice(question)" ng-model="question.MutuallyExclusiveOptions" ng-true-value="true" ng-false-value="false" />
+                            </td>
+                            <td class="col-xs-6">
+                                <div ng-if="$parent.isMultipleChoice(question)">
+                                    <div class="col-xs-10 row">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Add a multiple choice option" ng-model="question.optionToAdd">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-success" type="button" ng-click="addOption(question)">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 row">
+                                        <ul class="list-unstyled">
+                                            <li ng-repeat="option in question.Options">
+                                                <span class="glyphicon glyphicon-remove btn" ng-click="removeOption(question.Options, option)"></span>{{option.Option}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div ng-if="!$parent.isMultipleChoice(question)">Free-form Text</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <button class="btn btn-lg btn-success" ng-disabled="(Survey.Questions.length == 0 || SurveyForm.$invalid)" ng-click="save()" type="button">Save</button>
+        </fieldset>
+    </div>
+
+</form>

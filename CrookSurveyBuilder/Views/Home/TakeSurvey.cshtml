@@ -1,0 +1,45 @@
+﻿<form name="surveyResponses" novalidate>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Question</th>
+                <th>Response(s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="question in survey.Questions">
+                <td class="text-center">{{survey.Questions.indexOf(question)+1}}.</td>
+                <td>{{question.QuestionText}}</td>
+                @*TODO: Refactor suggestion: pull these out into directive(s)*@
+                <td ng-if="question.Options.length > 0 && question.MutuallyExclusiveOptions">
+                    <div ng-class="{'form-group':true, 'has-error' : (surveyResponses['question{{question.SurveyQuestionId}}'].$invalid)}" ng-repeat="option in question.Options">
+                        <label class="radio form-group">
+                            {{option.Option}}
+                            <input type="radio" class="" ng-required="question.Required && question.Options.indexOf(option) == question.Options.length-1" name="question{{question.SurveyQuestionId}}" ng-model="responses[question.SurveyQuestionId]" ng-value="option.MultipleChoiceOptionID" />
+                        </label>
+                    </div>
+                </td>
+                <td ng-if="question.Options.length > 0 && !question.MutuallyExclusiveOptions">
+                    <div ng-class="{'form-group':true, 'has-error' : (surveyResponses['question{{question.SurveyQuestionId}}'].$invalid)}">
+                        <label class="checkbox" ng-repeat="option in question.Options">
+                            <input type="checkbox" ng-required="question.Required && question.Options.indexOf(option) == question.Options.length-1" name="question{{question.SurveyQuestionId}}" ng-model="responses[question.SurveyQuestionId][question.Options.indexOf(option)]" ng-true-value="{{option.MultipleChoiceOptionID}}" />
+                            {{option.Option}}
+                        </label>
+                    </div>
+                </td>
+                <td ng-if="question.Options.length == 0">
+                    <textarea ng-required="question.Required" class="form-control" ng-model="responses[question.SurveyQuestionId]"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+
+        @*TODO: refactor into directives*@
+
+    </div>
+
+
+    <button class="btn btn-success" ng-click="submitSurveyResponse()" type="submit" ng-disabled="isSubmitted">Submit Survey</button>
+</form>

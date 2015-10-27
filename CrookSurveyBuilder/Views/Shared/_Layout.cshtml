@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html ng-app="SurveyBuilderApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="indexController">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Crook's Survey Builder", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/#/">Home</a></li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li><a href="/#/surveys" ng-show="authentication.isAuth">My Surveys</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="/#/login" ng-show="!authentication.isAuth">Login</a></li>
+                    <li><a href="/#/register" ng-show="!authentication.isAuth">Register</a></li>
+                    <li><a href="/#/surveys" ng-show="authentication.isAuth">{{authentication.userName}}</a></li>
+                    <li><a href="javascript:;" ng-click="logOut()" ng-show="authentication.isAuth">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div ng-view class="angular-content">
+            @RenderBody()
+        </div>
+        
+    </div>
+    <div class="container">
+        <hr />
+        <footer class="row text-center">
+            <p>&copy; @DateTime.Now.Year - Crook's Survey Builder</p>
+        </footer>
+    </div>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/surveybuilder")
+    @RenderSection("scripts", required: false)
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<fieldset>
+    <legend>My Surveys</legend>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Number of Questions</th>
+                <th>Take Survey / Preview</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="survey in surveys">
+                <td>
+                    <span class="glyphicon glyphicon-remove-circle" ng-click="deleteSurvey(survey)"></span>
+                </td>
+                <td>
+                    <a ng-href="/#/surveys/{{survey.SurveyId}}" ng-bind="survey.Name"></a>
+                </td>
+                <td ng-bind="survey.Description"></td>
+                <td ng-bind="survey.Questions.length"></td>
+                <td><a ng-href="/#/take-survey/{{survey.SurveyId}}">Preview</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn btn-lg btn-success" ng-click="createNewSurvey()">
+        <span class="glyphicon glyphicon-plus"></span>
+        Create a New Survey
+    </div>
+</fieldset>
