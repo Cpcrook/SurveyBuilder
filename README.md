@@ -15,16 +15,22 @@ Functionality
 * Ability to "preview" or really, take the actual survey
 
 
-TODOs / What I would have done different
-========================================
+TODOs / What I would have done differently
+==========================================
 
 I'm a bit pressed for time with both work and school, but here are my thoughts:
 
-* Write additional tests: server-side, client-side, and end-to-end (Protractor)
+* Write tests: server-side, client-side, and end-to-end (Protractor)
+* Utilize FluentValidation for server-side validation
+* Use a framework for client-side validation
 * Implement repository pattern
-* Implement service layer
+* Re-organize project into projects (UI, DAL containing repositories and EF goodies, BusinessLogic containing validation, Core for anything shared amongst all projs, Services for a service layer to improve abstraction, then test projects for each)
+* Dependency Injection (I set up IoC so infrequently on a new project that I felt it wasn't worth the time for this exercise)
 * Utilize data binding models for API controllers (mapping to and from entities using AutoMapper)
 * Re-think some of the DB structure -- not terribly comfortable with how EF treats composition/aggregation/etc so I'd need to look into that more.
 * Rename the home controller / break up the methods inside it
 * Consider using static HTML for Angular views (less overhear than MVC razor views)
 * Add UI to show / summarize survey results
+
+Let me know if you have any questions.
+- Chris
